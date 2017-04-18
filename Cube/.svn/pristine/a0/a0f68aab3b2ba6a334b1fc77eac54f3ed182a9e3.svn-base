@@ -1,0 +1,18 @@
+#pragma once
+#include "Moving.h"
+
+
+
+class Unit : public Moving
+{
+	
+public:
+	Unit();
+	Unit(int ID, Sprite_Sheet_Data base, sf::Vector2f position, World<Physical> *mapa, float speed=5.f);
+	~Unit();
+	virtual void update(World<Physical>*mapa);
+
+	
+
+};
+

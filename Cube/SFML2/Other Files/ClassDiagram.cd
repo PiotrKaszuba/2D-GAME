@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Animated" Collapsed="true">
+    <Position X="9.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABRAAAFAAAAAggAAAAAAQAAAAQAAAAAAAAABAEAAA=</HashCode>
+      <FileName>Animated.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bonus" Collapsed="true">
+    <Position X="6" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACQAAABgAFACAAgAAAAAAEAAA=</HashCode>
+      <FileName>Bonus.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bonus_Holder" Collapsed="true">
+    <Position X="17" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAACAAAEAAAAAAAAgAAAIAAEAAA=</HashCode>
+      <FileName>Bonus_Holder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Column" Collapsed="true">
+    <Position X="12.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAACAAAIFAAAIgIAAAAAAgAAAAgAAEAAA=</HashCode>
+      <FileName>Column.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cube&lt;x&gt;" Collapsed="true">
+    <Position X="3.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQDBASiAgAgIAiAAFIigAAAIAAAAAgBBAEACABEAAA=</HashCode>
+      <FileName>Cube.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Damage_Trap" Collapsed="true">
+    <Position X="3.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAgAAAAAAAQAAAAAAEAgAAAACAAAAEAAA=</HashCode>
+      <FileName>Damage_Trap.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Damage_Trap_Spreader" Collapsed="true">
+    <Position X="19.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgiBAAAICAAQAAAAAAAAAAAAAEAAAAAAAAAAAIAEBAA=</HashCode>
+      <FileName>Damage_Trap_Spreader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="14.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAiCBAAEAAAACARAAAAAEAAAAAAAAgAAAAAAEAAI=</HashCode>
+      <FileName>Enemy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Engine" Collapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAQAAAAAAAAAAAAAAAAAAAAIBAAAAAAAACA=</HashCode>
+      <FileName>Engine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Exit" Collapsed="true">
+    <Position X="15" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAABAAAAAAAAAAAAgAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Exit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="3.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAiAAAAAAAAAAABEAAA=</HashCode>
+      <FileName>Game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Object" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAQACgAQgQAAAAAAEAAAAAAAAAgAgAAAEABA=</HashCode>
+      <FileName>Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projectile" Collapsed="true">
+    <Position X="10.5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAgAAAAgABQAAABAQQAAgAgAAAAAAAIAA=</HashCode>
+      <FileName>Projectile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projectile_Shooter" Collapsed="true">
+    <Position X="12.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABCQKAAAAAAAAABAAAEIAAAAAAAAAAAABAAAAEAAA=</HashCode>
+      <FileName>Projectile_Shooter.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Room" Collapsed="true">
+    <Position X="23.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAwCIIAMgEAACAgAJMgEAAAIAgCJEIIAAAygAAUoAg=</HashCode>
+      <FileName>Room.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Room_Feature" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAQACAAAAAAAEAAAAAAAAgAAAAAAEIAA=</HashCode>
+      <FileName>Room_Feature.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Trap" Collapsed="true">
+    <Position X="4.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAgAAQAAAAAAAAAAAAAAACAAEAAA=</HashCode>
+      <FileName>Trap.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Usable" Collapsed="true">
+    <Position X="13.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAEAAAAAAAgAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Usable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Visible" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAACCAAAAAAAAAAAAAAAIAAAAAAAEABA=</HashCode>
+      <FileName>Visible.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="World&lt;x&gt;" Collapsed="true">
+    <Position X="27" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAMAAAEQABAAAAAAAAAAAAAAAQACIAAAAQAgIIMAAAA=</HashCode>
+      <FileName>World.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Moving" Collapsed="true">
+    <Position X="9.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIgIAAACAEBgAAAAQAAgAgAAAAAAAAAAAEJAA=</HashCode>
+      <FileName>Moving.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Physical" Collapsed="true">
+    <Position X="9.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhJABQAAUEAAAAIAABQQQAABQUAgIgogAAAAAABCI=</HashCode>
+      <FileName>Physical.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Type_of_Animation" Collapsed="true">
+    <Position X="25.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACACACEEAAAIAIAgAAACQAAAwAAAAAAAIAAACgAAQAA=</HashCode>
+      <FileName>Type_of_Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player" Collapsed="true">
+    <Position X="8.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAARAQAAIIABBAIAAAERAAAQjKAABA6AAQBQwkABI=</HashCode>
+      <FileName>Player.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unit" Collapsed="true">
+    <Position X="8.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhAABBAAUAgIgA4KAAAAQABAUEAgAQoAQAAAAEACg=</HashCode>
+      <FileName>Unit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sprite_Sheet" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAABBAAAAABAACAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Sprite_Sheet.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Damage_Trap_Info" Collapsed="true">
+    <Position X="21.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Damage_Trap_Spreader.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Room_Feature_Data" Collapsed="true">
+    <Position X="23.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAQAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Room.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Sprite_Sheet_Data" Collapsed="true">
+    <Position X="25.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAgQAQoAQAAAAAAAAAACABAAQAAAIBAA=</HashCode>
+      <FileName>Visible.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="state" Collapsed="true">
+    <Position X="27" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAgAAAgAQAAAAAAAAAACABAAAAAAIBAA=</HashCode>
+      <FileName>Animated.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="side" Collapsed="true">
+    <Position X="25.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAABAAAAAAA=</HashCode>
+      <FileName>Animated.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="bonus_type" Collapsed="true">
+    <Position X="21.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQIAAAAAAAAAQAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bonus.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="dependance" Collapsed="true">
+    <Position X="23.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgEAAAAAAAgAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Column.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="trap_shape" Collapsed="true">
+    <Position X="21.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Damage_Trap_Spreader.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="positionx" Collapsed="true">
+    <Position X="21.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAMCAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enemy.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="positiony" Collapsed="true">
+    <Position X="23.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAACAAAAAAAAAAAAAAAAAAAAAAMAAAAAEAAA=</HashCode>
+      <FileName>Enemy.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="direction_y" Collapsed="true">
+    <Position X="27" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAEAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Moving.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="direction_x" Collapsed="true">
+    <Position X="25.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEIAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Moving.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="way" Collapsed="true">
+    <Position X="23.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAIAAACAQAIAAAAAAAAAAAAAABAAAgAA=</HashCode>
+      <FileName>Physical.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

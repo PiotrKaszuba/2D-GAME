@@ -1,0 +1,12 @@
+#include "Room_Feature.h"
+
+
+
+Room_Feature::Room_Feature()
+{
+}
+
+
+Room_Feature::~Room_Feature()
+{
+}

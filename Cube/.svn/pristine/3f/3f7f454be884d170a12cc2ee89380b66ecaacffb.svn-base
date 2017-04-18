@@ -1,0 +1,23 @@
+#pragma once
+#pragma once
+#include "Animated.h"
+
+class Unit;
+// represents non-passable objects that might collide with others
+// constructor adds the object to World's array of objects that checks for collision
+class Physical :
+	public Animated
+{
+public:
+	Physical();
+	Physical(int ID, Sprite_Sheet_Data base, sf::Vector2f position, World<Physical> *mapa);
+	~Physical();
+	virtual void update();
+	// those virtuals make it possible to use Unit values from Physical class (World is for Physical in default)
+	virtual void add_velocity(sf::Vector2f velocity);
+	virtual void deal_damage(float damage);
+	virtual float get_damage();
+
+	
+};
+

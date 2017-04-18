@@ -1,0 +1,22 @@
+#pragma once
+#include "Trap.h"
+
+//deals damage when step on
+
+class Damage_Trap :
+	public Trap
+{
+protected:
+	float damage;
+public:
+	Damage_Trap();
+	Damage_Trap(int ID, Sprite_Sheet_Data base, sf::Vector2f position, World<Physical> *mapa, float damage = 1.75);
+	~Damage_Trap();
+	virtual void activate(Physical *target);
+	
+	void deal_damage_to(Physical* target, float damage)
+	{
+		target->deal_damage(damage);
+	}
+};
+

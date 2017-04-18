@@ -1,0 +1,29 @@
+#pragma once
+#include "Sprite_Sheet.h"
+
+enum state {
+	still,
+	go
+};
+enum side {
+	r,
+	l
+};
+
+
+class Animated :
+	public Sprite_Sheet
+{
+protected:
+	int animated_frame;
+	state animated_state;
+	side animated_side;
+
+public:
+	Animated();
+	Animated(int ID, Sprite_Sheet_Data base, sf::Vector2f position);
+	void Animate();
+	virtual void update();
+	~Animated();
+};
+

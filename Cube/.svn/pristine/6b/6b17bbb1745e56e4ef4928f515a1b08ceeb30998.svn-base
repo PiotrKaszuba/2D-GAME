@@ -1,0 +1,26 @@
+#pragma once
+#include "Object.h"
+
+struct Sprite_Sheet_Data
+{
+	sf::Sprite * data;
+	int size;
+	int width;
+	int height;
+	sf::Vector2<int> start;
+	sf::Vector2<int> jump;
+	Type_of_Animation still;
+	Type_of_Animation go;
+};
+
+class Visible :
+	public Object, public sf::Sprite
+{
+public:
+	Visible();
+	Visible(int ID, Sprite_Sheet_Data base, sf::Vector2f position);
+	~Visible();
+
+	sf::Rect<int> Get_Rect();
+};
+

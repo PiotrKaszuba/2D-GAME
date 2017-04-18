@@ -1,0 +1,39 @@
+#include "Physical.h"
+
+
+
+
+
+
+Physical::Physical()
+{
+}
+
+Physical::Physical(int ID, Sprite_Sheet_Data base, sf::Vector2f position, World<Physical> *mapa) : Animated(ID,base,position)
+{
+	mapa->add_obstacle(mapa->Get_objects(), this);
+	mapa->Set_objects(1);
+}
+
+Physical::~Physical()
+{
+}
+
+void Physical::update()
+{
+	Animate();
+}
+
+void Physical::add_velocity(sf::Vector2f velocity)
+{
+}
+
+void Physical::deal_damage(float damage)
+{
+}
+
+float Physical::get_damage()
+{
+	return 0.0f;
+}
+

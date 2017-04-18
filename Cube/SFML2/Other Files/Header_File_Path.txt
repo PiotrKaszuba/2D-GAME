@@ -1,0 +1,28 @@
+Const values
+World (inline)
+Type_of_Animation
+Object
+Visible
+Sprite_Sheet
+Animated
+Physical
+Trap
+Damage_Trap
+Room_Feature
+Damage_Trap_Spreader
+Usable
+Exit
+Column
+Game
+Cube (inline)
+Moving
+Projectile
+Projectile_Shooter
+Unit
+Enemy
+Bonus
+Bonus_Holder
+Room
+Player
+Engine
+main (source)

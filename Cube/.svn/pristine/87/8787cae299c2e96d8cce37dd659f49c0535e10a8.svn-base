@@ -1,0 +1,48 @@
+#include "Damage_Trap_Spreader.h"
+
+
+
+Damage_Trap_Spreader::Damage_Trap_Spreader()
+{
+}
+
+Damage_Trap_Spreader::Damage_Trap_Spreader(int index_range_start, int number_of_traps, Sprite_Sheet_Data trap_sample, World<Physical> *mapa, int trap_lifetime, float trap_damage) : Room_Feature()
+{
+	this->index_range_start = index_range_start;
+	this->number_of_traps = number_of_traps;
+	this->trap_lifetime = trap_lifetime;
+	this->trap_damage = trap_damage;
+	
+	this->traps = new Damage_Trap_Info[this->number_of_traps];
+	for (int i = 0; i < this->number_of_traps;i++)
+	{
+		this->traps[i].trap = new Damage_Trap(i+this->index_range_start, trap_sample, sf::Vector2f(float(rand() % mapa->getSize().x + mapa->Get_border_size().x / 2), float(rand() % mapa->getSize().y + mapa->Get_border_size().y / 2)), mapa, this->trap_damage);
+		this->traps[i].time_left = this->trap_lifetime / 2 + rand() % this->trap_lifetime / 2;
+	}
+}
+
+
+Damage_Trap_Spreader::~Damage_Trap_Spreader()
+{
+	for (int i = 0; i < this->number_of_traps;i++)
+	{
+		delete this->traps[i].trap;
+	}
+	delete[] this->traps;
+
+}
+
+void Damage_Trap_Spreader::update(World<Physical>* mapa)
+{
+	for (int i = 0; i < number_of_traps;i++)
+	{
+		if (this->traps[i].time_left == 0)
+		{
+			this->traps[i].trap->setPosition(sf::Vector2f(float(rand() % mapa->getSize().x + mapa->Get_border_size().x / 2), float(rand() % mapa->getSize().y + mapa->Get_border_size().y / 2)));
+			this->traps[i].time_left = this->trap_lifetime / 2 + rand() % this->trap_lifetime / 2;
+			this->traps[i].trap->set_weight(2);
+		}
+		this->traps[i].trap->update(mapa);
+		this->traps[i].time_left -= 1;
+	}
+}

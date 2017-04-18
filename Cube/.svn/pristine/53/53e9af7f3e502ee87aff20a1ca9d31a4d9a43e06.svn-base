@@ -1,0 +1,45 @@
+#include "Type_of_Animation.h"
+
+
+
+Type_of_Animation::Type_of_Animation()
+{
+}
+
+Type_of_Animation::Type_of_Animation(sf::Vector2i nr, int frames, int offset, sf::Vector2i size_modifier)
+{
+	this->type_of_animation_nr = nr;
+	this->type_of_animation_frames = frames;
+	this->type_of_animation_offset=offset;
+	this->type_of_animation_size_modifier = size_modifier;
+}
+
+int Type_of_Animation::Get_type_of_animation_x_nr()
+{
+	return this->type_of_animation_nr.x;
+}
+
+
+int Type_of_Animation::Get_type_of_animation_y_nr()
+{
+	return this->type_of_animation_nr.y;
+}
+
+int Type_of_Animation::Get_type_of_animation_frames()
+{
+	return this->type_of_animation_frames;
+}
+
+int Type_of_Animation::Get_type_of_animation_offset()
+{
+	return this->type_of_animation_offset;
+}
+
+sf::Vector2i Type_of_Animation::Get_type_of_animation_size_modifier()
+{
+	return this->type_of_animation_size_modifier;
+}
+
+Type_of_Animation::~Type_of_Animation()
+{
+}

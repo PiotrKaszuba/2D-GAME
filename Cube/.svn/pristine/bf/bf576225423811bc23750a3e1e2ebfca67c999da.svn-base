@@ -1,0 +1,51 @@
+#include "Player.h"
+
+
+
+Player::Player()
+{
+}
+
+Player::Player(Unit base, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key down) : Unit(base)
+{
+	this->player_left = left;
+	this->player_right = right;
+	this->player_up = up;
+	this->player_down = down;
+	
+}
+
+
+Player::~Player()
+{
+}
+
+sf::Keyboard::Key Player::get_player_left()
+{
+	return this->player_left;
+}
+
+sf::Keyboard::Key Player::get_player_right()
+{
+	return this->player_right;
+}
+
+sf::Keyboard::Key Player::get_player_up()
+{
+	return this->player_up;
+}
+
+sf::Keyboard::Key Player::get_player_down()
+{
+	return this->player_down;
+}
+
+void Player::update(World<Physical>*mapa)
+{
+	this->Movement();
+	this->Border_Collision(mapa);
+	this->Physical_Collision(mapa);
+	this->Animate();
+	mapa->Set_obstacle(this->ID, this->getPosition().x, this->getPosition().y);
+	
+}

@@ -1,0 +1,18 @@
+#pragma once
+#include "Type_of_Animation.h"
+class Object
+{
+protected: 
+	int ID;
+	int width;
+	int height;
+public:
+	Object();
+	Object(int ID, int width, int height);
+	int Get_ID();
+	int Get_width();
+	int Get_height();
+	
+	~Object();
+};
+

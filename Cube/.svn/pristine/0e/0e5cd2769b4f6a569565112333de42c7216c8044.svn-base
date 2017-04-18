@@ -1,0 +1,185 @@
+
+#include "Player.h"
+
+
+ const std::string name_image_lis = "texture.png";
+
+
+int main()
+{
+	//initialize data
+	Sprite_Sheet_Data lis;
+
+    //lis
+	sf::Image imlis;
+	imlis.loadFromFile(name_image_lis);
+
+	lis.size = 1096; lis.width = 40; lis.height = 40; ;lis.start = sf::Vector2i(2, 18);lis.jump = sf::Vector2i(68, 82);
+	lis.still = Type_of_Animation(sf::Vector2i(1, 1), 1,0,sf::Vector2i(14,36)); lis.go=Type_of_Animation(sf::Vector2i(1, 2), 6, 6, sf::Vector2i(14, 36));
+	
+	
+	imlis.createMaskFromColor(sf::Color(0, 128, 128, 255));
+	
+	sf::Texture tex_lis;
+	tex_lis.loadFromImage(imlis);
+	
+	sf::Sprite xslis = sf::Sprite(tex_lis, sf::IntRect(lis.start.x,lis.start.y,lis.width,lis.height));
+	
+	lis.data = &xslis;
+
+	//
+
+
+	World<Physical> *mapa = new World<Physical>(sf::Vector2i(800, 600), sf::Vector2i(40,30), 10);
+	//
+	
+	
+	
+	Unit b(0, lis, sf::Vector2f(mapa->Get_border_size().x/2+200, mapa->Get_border_size().y/2 + 200), mapa,  9.f);
+	Unit a(1, lis, sf::Vector2f(mapa->Get_border_size().x/2 + 60, mapa->Get_border_size().y/2 + 60), mapa,  9.f);
+	Player x(a, sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up, sf::Keyboard::Down);
+	Player y(b, sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W, sf::Keyboard::S);
+
+	//
+	bool alfa = 0;
+	//
+	sf::RenderWindow window(sf::VideoMode(mapa->Get_width()+mapa->Get_border_size().x, mapa->Get_height()+ mapa->Get_border_size().y), "SFML works!");
+	window.setPosition(sf::Vector2i(0,0));
+	//
+	while (window.isOpen())
+	{
+		x.stop();
+		y.stop();
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			
+			
+			if (event.type == sf::Event::Closed)
+			{
+				window.close();
+			}
+			
+			if (event.type == sf::Event::KeyReleased)
+			{
+				if (event.key.code == x.get_player_up() || event.key.code == x.get_player_down())
+				{
+					x.change_direction(y_none);
+				}
+				if (event.key.code == x.get_player_left() || event.key.code == x.get_player_right())
+				{
+					x.change_direction(x_none);
+				}
+
+				if (event.key.code == y.get_player_up() || event.key.code == y.get_player_down())
+				{
+					y.change_direction(y_none);
+				}
+				if (event.key.code == y.get_player_left() || event.key.code == y.get_player_right())
+				{
+					y.change_direction(x_none);
+				}
+			}
+			if (event.type == sf::Event::KeyPressed)
+			{
+				
+				
+				if (event.key.code == x.get_player_up())
+				{
+					x.change_direction(y_up);
+					
+				}
+
+				if (event.key.code == x.get_player_down())
+				{
+					x.change_direction(y_down);
+				
+				}
+
+				if (event.key.code == x.get_player_left())
+				{
+					x.change_direction(x_left);
+					
+				}
+
+				if (event.key.code == x.get_player_right())
+				{
+					x.change_direction(x_right);
+				
+				}
+				
+
+
+
+				if (event.key.code == y.get_player_up())
+				{
+					y.change_direction(y_up);
+
+				}
+
+				if (event.key.code == y.get_player_down())
+				{
+					y.change_direction(y_down);
+
+				}
+
+				if (event.key.code == y.get_player_left())
+				{
+					y.change_direction(x_left);
+
+				}
+
+				if (event.key.code == y.get_player_right())
+				{
+					y.change_direction(x_right);
+
+				}
+
+				
+			}
+
+
+
+
+			
+		}
+		window.clear();
+		
+		//
+		x.update(mapa);
+	    y.update(mapa);
+		//
+		if (alfa) {
+			window.draw(x);
+			window.draw(y);
+			alfa = false;
+		}
+		else
+		{
+			window.draw(y);
+			window.draw(x);
+			alfa = true;
+		}
+		//
+		/*
+		sf::RectangleShape vc(sf::Vector2f(40, 40));
+		vc.setOrigin(20,20);
+		vc.setPosition(x.getPosition());
+		window.draw(vc);
+		sf::RectangleShape bc(sf::Vector2f(40, 40));
+		bc.setOrigin(20, 20);
+		bc.setPosition(sf::Vector2f(y.getPosition().x,y.getPosition().y));
+		window.draw(bc);
+		sf::CircleShape af(6, 30);
+		af.setFillColor(sf::Color(100, 40, 150, 255));
+		af.setPosition(x.getPosition());
+		window.draw(af);
+		//
+		*/
+		window.display();
+		Sleep(33);
+	}
+
+	return 0;
+}
+

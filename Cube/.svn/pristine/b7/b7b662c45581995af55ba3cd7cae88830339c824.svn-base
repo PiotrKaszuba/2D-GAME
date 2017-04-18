@@ -1,0 +1,196 @@
+#pragma once
+#include "Column.h"
+
+template <class x>
+class Cube
+{
+private:
+	x *** rooms;
+	char sum;
+	char divisibility;
+	char permutation;
+	char does_not_contain;
+	sf::Vector3<char> active_room;
+	Sprite_Sheet_Data ** graphics;
+	
+public:
+
+	Cube(char sum, char divisibility, char permutation, char does_not_contain, Sprite_Sheet_Data **graphics, World<Physical> *mapa);
+	sf::Vector3<char> get_active_room();
+	void set_active_room(sf::Vector3<char> active_room);
+	x *** get_rooms();
+	char get_sum();
+	char get_divisibility();
+	char get_permutation();
+	char get_does_not_contain();
+	void update(World<Physical> *mapa);
+
+	Cube()
+	{
+	}
+
+	~Cube()
+	{
+		
+		for (int x = 0;x < 10;x++)
+		{
+			
+			for (int y = 0; y < 10;y++)
+			{
+				delete[] this->rooms[x][y];
+			}
+			delete[] this->rooms[x];
+		}
+		delete[] this->rooms;
+	}
+};
+
+template<class x>
+inline Cube<x>::Cube(char sum, char divisibility, char permutation, char does_not_contain, Sprite_Sheet_Data **graphics, World<Physical> *mapa)
+{
+	this->sum = sum;
+	this->divisibility = divisibility;
+	this->permutation = permutation;
+	this->does_not_contain = does_not_contain;
+	this->rooms = new Room**[10];
+	for (int x = 0;x < 10;x++)
+	{
+		this->rooms[x] = new Room*[10];
+		for (int y = 0; y < 10;y++)
+		{
+			this->rooms[x][y] = new Room[10];
+			for (int z = 0;z < 10;z++)
+			{
+				this->rooms[x][y][z] = Room(sf::Vector3<char>(x, y, z));
+			}
+		}
+	}
+	this->graphics = graphics;
+	this->active_room = sf::Vector3<char>(rand() % 10, rand() % 10, rand() % 10);
+	this->rooms[this->active_room.x][this->active_room.y][this->active_room.z].initialize(mapa, this, this->graphics);
+}
+
+template<class x>
+inline sf::Vector3<char> Cube<x>::get_active_room()
+{
+	return this->active_room;
+}
+
+template<class x>
+inline void Cube<x>::set_active_room(sf::Vector3<char> active_room)
+{
+	this->active_room = active_room;
+}
+
+template<class x>
+inline x *** Cube<x>::get_rooms()
+{
+	return this->rooms;
+}
+
+template<class x>
+inline char Cube<x>::get_sum()
+{
+	return this->sum;
+}
+
+template<class x>
+inline char Cube<x>::get_divisibility()
+{
+	return this->divisibility;
+}
+
+template<class x>
+inline char Cube<x>::get_permutation()
+{
+	return this->permutation;
+}
+
+template<class x>
+inline char Cube<x>::get_does_not_contain()
+{
+	return this->does_not_contain;
+}
+
+template<class x>
+inline void Cube<x>::update(World<Physical>* mapa)
+{
+	
+	if (mapa->get_obstacle()[0]->get_to_go() != noway)
+	{
+		bool going = 1;
+		if (mapa->get_obstacle()[0]->get_to_go() == east)
+		{
+			if (this->active_room.x > 0)
+			{
+				this->active_room.x -= 1;
+				mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[4]->getPosition());
+			}
+			else going = 0;
+		}
+
+		if (mapa->get_obstacle()[0]->get_to_go() == south)
+		{
+			if (this->active_room.y > 0)
+			{
+				this->active_room.y -= 1;
+				mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[1]->getPosition());
+			}
+			else going = 0;
+		}
+
+		if (mapa->get_obstacle()[0]->get_to_go() == downstairs)
+		{
+			if (this->active_room.z > 0)
+			{
+				this->active_room.z -= 1;
+				mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[6]->getPosition());
+			}
+			else going = 0;
+		}
+
+		if (mapa->get_obstacle()[0]->get_to_go() == west)
+		{
+			if (this->active_room.x < 9)
+			{
+				this->active_room.x += 1;
+				mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[3]->getPosition());
+			}
+			else going = 0;
+		}
+
+		if (mapa->get_obstacle()[0]->get_to_go() == north)
+		{
+			if (this->active_room.y < 9)
+			{
+				this->active_room.y += 1;
+				mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[2]->getPosition());
+			}
+			else going = 0;
+		}
+
+		if (mapa->get_obstacle()[0]->get_to_go() == upstairs)
+		{
+			if (this->active_room.z < 9)
+			{
+				this->active_room.z += 1;
+				mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[5]->getPosition());
+			}
+			else going = 0;
+		}
+
+		if (going)
+		{
+			for (int i = 1; i < mapa->Get_objects(); i++)
+			{
+				delete mapa->get_obstacle()[i];
+			}
+			mapa->Set_objects(1 - mapa->Get_objects());
+			
+			this->rooms[this->active_room.x][this->active_room.y][this->active_room.z].initialize(mapa, this, graphics);
+			
+		}
+		mapa->get_obstacle()[0]->set_to_go(noway);
+	}
+	this->rooms[this->active_room.x][this->active_room.y][this->active_room.z].update(mapa);
+}

@@ -1,0 +1,22 @@
+#include "Visible.h"
+
+
+
+Visible::Visible()
+{
+}
+
+Visible::Visible(int ID, Sprite_Sheet_Data base, sf::Vector2f position) : Sprite(*base.data) , Object(ID, base.width, base.height)
+{
+	this->setPosition(position);
+}
+
+
+Visible::~Visible()
+{
+}
+
+sf::Rect<int> Visible::Get_Rect()
+{
+	return sf::Rect<int>(this->getPosition().x,this->getPosition().y,this->width,this->height);
+}

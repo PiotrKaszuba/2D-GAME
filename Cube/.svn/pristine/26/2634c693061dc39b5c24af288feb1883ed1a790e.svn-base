@@ -1,0 +1,16 @@
+#pragma once
+#include "Player.h"
+// this class runs the game in an infinite loop and handles events
+// it needs World, Player created in this World with index 0 and then Game also created in this World to run properly
+class Engine
+{
+private:
+	Game *game;
+	World<Physical> *mapa;
+public:
+	Engine();
+	Engine(Game *game, World<Physical> *mapa);
+	void run();
+	~Engine();
+};
+

@@ -1,0 +1,21 @@
+#include "Sprite_Sheet.h"
+
+
+Sprite_Sheet::Sprite_Sheet()
+{
+
+}
+
+Sprite_Sheet::Sprite_Sheet(int ID, Sprite_Sheet_Data data, sf::Vector2f position) : Visible(ID, data, position)
+{
+	this->sprite_sheet_size = data.size;
+	this->sprite_sheet_start = data.start;
+	this->sprite_sheet_jump = data.jump;
+	this->sprite_sheet_animation_num[0] = data.still;
+	this->sprite_sheet_animation_num[1] = data.go;
+	
+}
+
+Sprite_Sheet::~Sprite_Sheet()
+{
+}

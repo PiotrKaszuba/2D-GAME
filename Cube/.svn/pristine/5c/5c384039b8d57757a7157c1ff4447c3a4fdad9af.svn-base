@@ -1,0 +1,26 @@
+#pragma once
+#include "Room_Feature.h"
+
+struct Damage_Trap_Info
+{
+	Damage_Trap *trap;
+	int time_left;
+};
+
+class Damage_Trap_Spreader :
+	public Room_Feature
+{
+protected:
+	Damage_Trap_Info *traps;
+	float trap_damage;
+	int number_of_traps;
+	int trap_lifetime;
+	int index_range_start;
+public:
+	Damage_Trap_Spreader();
+	Damage_Trap_Spreader(int index_range_start, int number_of_traps, Sprite_Sheet_Data trap_sample, World<Physical> *mapa, int trap_lifetime = 160, float trap_damage = 1.75f);
+
+	~Damage_Trap_Spreader();
+	virtual void update(World<Physical> *mapa);
+};
+

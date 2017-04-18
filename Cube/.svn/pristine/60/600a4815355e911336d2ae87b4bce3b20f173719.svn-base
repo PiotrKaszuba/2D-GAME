@@ -1,0 +1,393 @@
+#pragma once
+#include "Game.h"
+
+
+// this class represents the whole game arena as it stores all rooms and dependencies between them
+// this is the only object to be updated as it updates active room which updates all objects in it
+// index 0 in the World object is set to be a player
+// Rooms save other objects in :
+// 1-4 border exits
+// 5 middle exit
+// 6 ladder exit
+// 7 column
+// 8+ room feature objects ( depend on room feature )
+template <class x>
+class Cube : public Game
+{
+private:
+	int time;
+	x *** rooms;
+	char sum;
+	char divisibility;
+	char permutation;
+	char does_not_contain;
+	sf::Vector3<char> active_room;
+	Sprite_Sheet_Data ** graphics;
+	sf::Text timer;
+	
+public:
+
+	//Values to call with
+	// sum 0-27 (might be limited to something like 3-24 but it disables a few rooms to be final)
+	// divisibility 2-11 (suggested -> might be higher) discluding 10 (system removes 10 automatically)
+	// permutation 1-6 (should not change)
+	// does_not_contain 0-9
+	Cube(char sum, char divisibility, char permutation, char does_not_contain, Sprite_Sheet_Data **graphics, World<Physical> *mapa, int time = 72000);
+	sf::Vector3<char> get_active_room();
+	void set_active_room(sf::Vector3<char> active_room);
+	x *** get_rooms();
+	char get_sum();
+	char get_divisibility();
+	char get_permutation();
+	char get_does_not_contain();
+	void update(World<Physical> *mapa);
+	int number_of_final_rooms();
+	void timer_update(World<Physical> *mapa);
+	void end(bool victory, World<Physical> *mapa);
+	void intro();
+
+	Cube()
+	{
+	}
+
+	~Cube()
+	{
+		
+		for (int x = 0;x < 10;x++)
+		{
+			
+			for (int y = 0; y < 10;y++)
+			{
+				delete[] this->rooms[x][y];
+			}
+			delete[] this->rooms[x];
+		}
+		delete[] this->rooms;
+	}
+};
+
+template<class x>
+inline Cube<x>::Cube(char sum, char divisibility, char permutation, char does_not_contain, Sprite_Sheet_Data **graphics, World<Physical> *mapa, int time)
+{
+	this->timer.setFont(*mapa->get_font());
+	this->timer.setColor(sf::Color::Yellow);
+	this->time = time;
+	this->sum = sum;
+	this->divisibility = divisibility;
+	
+	this->permutation = permutation;
+	this->does_not_contain = does_not_contain;
+	if (this->divisibility % 3 == 0 && this->sum % 3 != 0)
+	{
+		this->sum /= 3;
+		this->sum *= 3;
+		this->sum += 3 * (sum % 3 - 1);
+	}
+	while (this->divisibility == 10)
+	{
+		this->divisibility = rand() % 10 + 2;
+	}
+	this->rooms = new Room**[10];
+	for (int x = 0;x < 10;x++)
+	{
+		this->rooms[x] = new Room*[10];
+		for (int y = 0; y < 10;y++)
+		{
+			this->rooms[x][y] = new Room[10];
+			for (int z = 0;z < 10;z++)
+			{
+				this->rooms[x][y][z] = Room(sf::Vector3<char>(x, y, z));
+			}
+		}
+	}
+	this->graphics = graphics;
+	this->active_room = sf::Vector3<char>(rand() % 10, rand() % 10, rand() % 10);
+	this->rooms[this->active_room.x][this->active_room.y][this->active_room.z].initialize(mapa, this, this->graphics);
+
+	
+	
+
+
+
+	int finals = 0;
+	while (!finals)
+	{
+		finals = this->number_of_final_rooms();
+		if (!finals)
+		{
+			int a = rand() % 4;
+			if (a == 0)
+				this->sum = rand() % 28;
+			if (a == 1)
+				this->divisibility = rand() % 10 + 2;
+			if (a == 2)
+				this->permutation = rand() % 6 + 1;
+			if (a == 3)
+				this->does_not_contain = rand() % 10;
+			if (this->divisibility % 3 == 0 && this->sum % 3 != 0)
+			{
+				this->sum /= 3;
+				this->sum *= 3;
+				this->sum += 3 * (sum % 3 - 1);
+			}
+			while (this->divisibility == 10)
+			{
+				this->divisibility = rand() % 10 + 2;
+			}
+		}
+	}
+
+
+
+
+
+
+}
+
+template<class x>
+inline sf::Vector3<char> Cube<x>::get_active_room()
+{
+	return this->active_room;
+}
+
+template<class x>
+inline void Cube<x>::set_active_room(sf::Vector3<char> active_room)
+{
+	this->active_room = active_room;
+}
+
+template<class x>
+inline x *** Cube<x>::get_rooms()
+{
+	return this->rooms;
+}
+
+template<class x>
+inline char Cube<x>::get_sum()
+{
+	return this->sum;
+}
+
+template<class x>
+inline char Cube<x>::get_divisibility()
+{
+	return this->divisibility;
+}
+
+template<class x>
+inline char Cube<x>::get_permutation()
+{
+	return this->permutation;
+}
+
+template<class x>
+inline char Cube<x>::get_does_not_contain()
+{
+	return this->does_not_contain;
+}
+
+template<class x>
+inline void Cube<x>::update(World<Physical>* mapa)
+{
+	if (mapa->get_obstacle()[0]->get_player_finish_used())
+	{
+		if (mapa->get_obstacle()[0]->get_alive())
+		{
+			mapa->get_obstacle()[0]->set_player_score(this->time);
+		}
+		this->time = 0;
+	}
+	if (this->time > 0)
+	{
+		if (mapa->get_obstacle()[0]->get_player_to_go() != noway)
+		{
+			bool going = 1;
+			if (mapa->get_obstacle()[0]->get_player_to_go() == east)
+			{
+				if (this->active_room.x > 0)
+				{
+					this->active_room.x -= 1;
+					mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[4]->getPosition());
+				}
+				else going = 0;
+			}
+
+			if (mapa->get_obstacle()[0]->get_player_to_go() == south)
+			{
+				if (this->active_room.y > 0)
+				{
+					this->active_room.y -= 1;
+					mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[1]->getPosition());
+				}
+				else going = 0;
+			}
+
+			if (mapa->get_obstacle()[0]->get_player_to_go() == downstairs)
+			{
+				if (this->active_room.z > 0)
+				{
+					this->active_room.z -= 1;
+					mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[6]->getPosition());
+				}
+				else going = 0;
+			}
+
+			if (mapa->get_obstacle()[0]->get_player_to_go() == west)
+			{
+				if (this->active_room.x < 9)
+				{
+					this->active_room.x += 1;
+					mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[3]->getPosition());
+				}
+				else going = 0;
+			}
+
+			if (mapa->get_obstacle()[0]->get_player_to_go() == north)
+			{
+				if (this->active_room.y < 9)
+				{
+					this->active_room.y += 1;
+					mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[2]->getPosition());
+				}
+				else going = 0;
+			}
+
+			if (mapa->get_obstacle()[0]->get_player_to_go() == upstairs)
+			{
+				if (this->active_room.z < 9)
+				{
+					this->active_room.z += 1;
+					mapa->get_obstacle()[0]->setPosition(mapa->get_obstacle()[5]->getPosition());
+				}
+				else going = 0;
+			}
+
+			if (going)
+			{
+
+				this->rooms[this->active_room.x][this->active_room.y][this->active_room.z].exit_room(mapa);
+
+				this->rooms[this->active_room.x][this->active_room.y][this->active_room.z].initialize(mapa, this, graphics);
+
+			}
+			mapa->get_obstacle()[0]->set_player_to_go(noway);
+		}
+		this->rooms[this->active_room.x][this->active_room.y][this->active_room.z].update(mapa);
+		if (mapa->get_obstacle()[0]->get_player_in_menu())
+		{
+			mapa->clear();
+			this->timer_update(mapa);
+		}
+		this->time -= 1;
+	}
+	else
+	{
+		if (mapa->get_obstacle()[0]->get_alive() )
+		{
+			this->end(this->rooms[this->active_room.x][this->active_room.y][this->active_room.z].get_final_room(), mapa);
+		}
+		else 
+			this->end(false, mapa);
+	}
+}
+
+template<class x>
+inline int Cube<x>::number_of_final_rooms()
+{
+	int finals = 0;
+	for (int x = 0; x < 10;x++)
+	{
+		for (int y = 0; y < 10;y++)
+		{
+			for (int z = 0; z < 10;z++)
+			{
+				int value = x * 100 + y * 10 + z;
+				int value2 = 0;
+				if (x != y && y != z && z != x)
+				{
+					if (x < y  && y < z)
+						value2 = 1;
+					if (x < z && z < y)
+						value2 = 2;
+					if (y < x && x < z)
+						value2 = 3;
+					if (z < x && x < y)
+						value2 = 4;
+					if (y < z && z < x)
+						value2 = 5;
+					if (z < y && y < x)
+						value2 = 6;
+				}
+				else if (x == y && x == z)
+				{
+					value2 = 1;
+				}
+				else
+				{
+					if (x < z)
+						value2 = 1;
+					if (x == z)
+						value2 = 2;
+					if (x > z)
+						value2 = 3;
+				}
+				if
+					(this->get_sum() == x + y + z &&
+						value%this->get_divisibility() == 0 &&
+						this->get_does_not_contain() != x && this->get_does_not_contain() != y && this->get_does_not_contain() != z &&
+						this->get_permutation() == value2
+						)
+				{
+					finals += 1;
+				std::cout << x << y << z << std::endl;
+				}
+
+			}
+		}
+	}
+	std::cout << finals;
+	return finals;
+	
+}
+
+template<class x>
+inline void Cube<x>::timer_update(World<Physical> *mapa)
+{
+	int a = this->time / 20;
+	int b = a / 3600;
+	int c = (a - b * 3600) / 60;
+	int d = (a - b * 3600 - c * 60);
+	a = 36;
+	if (b > 10) a += 10;
+	if (c > 10) a += 10;
+	if (d > 10) a += 10;
+	this->timer.setString(std::to_string(b).append(std::string(":").append(std::to_string(c).append(std::string(":").append(std::to_string(d))))));
+	this->timer.setPosition(mapa->getSize().x / 2 - a, mapa->getSize().y / 2 - 30.f);
+	mapa->draw(this->timer);
+}
+
+template<class x>
+inline void Cube<x>::end(bool victory, World<Physical> *mapa)
+{
+	if (victory)
+	{
+		mapa->get_obstacle()[0]->set_player_score(mapa->get_obstacle()[0]->get_health() * 100);
+		mapa->get_obstacle()[0]->deal_damage(mapa->get_obstacle()[0], mapa->get_obstacle()[0]->get_health());
+		this->timer.setString(std::string("Victory, score: ").append(std::to_string(mapa->get_obstacle()[0]->get_player_score())));
+		this->timer.setPosition(mapa->getSize().x / 2 - 150, mapa->getSize().y / 2 - 30.f);
+		this->timer.setColor(sf::Color::Green);
+	}
+	else
+	{
+		this->timer.setString("Defeat");
+		this->timer.setPosition(mapa->getSize().x / 2 - 50, mapa->getSize().y / 2 - 30.f);
+		this->timer.setColor(sf::Color::Red);
+	}
+	mapa->draw(this->timer);
+}
+
+template<class x>
+inline void Cube<x>::intro()
+{
+
+}

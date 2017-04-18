@@ -1,0 +1,21 @@
+#pragma once
+#include "Unit.h"
+class Player :
+	public Unit
+{
+private:
+	sf::Keyboard::Key player_left;
+	sf::Keyboard::Key player_right;
+	sf::Keyboard::Key player_up;
+	sf::Keyboard::Key player_down;
+public:
+	Player();
+	Player(Unit base, sf::Keyboard::Key left, sf::Keyboard::Key right, sf::Keyboard::Key up, sf::Keyboard::Key down);
+	~Player();
+	sf::Keyboard::Key get_player_left();
+	sf::Keyboard::Key get_player_right();
+	sf::Keyboard::Key get_player_up();
+	sf::Keyboard::Key get_player_down();
+	virtual void update(World<Physical>*mapa);
+};
+
